@@ -3,7 +3,7 @@
     <v-toolbar color="cyan" flat style="margin-top: -10px;">
       <template v-slot:extension v-if="$route.name == 'report'">
         <v-tabs v-model="tab" align-with-title>
-          <v-tabs-slider color="yellow"></v-tabs-slider>
+          <v-tabs-slider color="#f5f7b2"></v-tabs-slider>
 
           <v-tab v-for="reportButton in reportButtons" :key="reportButton">
             <v-icon>{{reportButton.icon}}</v-icon>

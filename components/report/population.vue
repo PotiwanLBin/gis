@@ -21,7 +21,7 @@
           background-color="#e4fbff"
         ></v-select>
       </v-col>
-      <v-btn class="d-flex ml-5" style="margin-top: 35px;" color="#e4fbff">
+      <v-btn class="d-flex ml-5" style="margin-top: 35px;" color="#3edbf0">
         OK
       </v-btn>
     </v-row>

@@ -1,13 +1,13 @@
 <template>
 	<v-app light id="v-app-ref">
 		<v-card>
-		<v-toolbar color="cyan" flat>
+		<v-toolbar color="cyan" flat dark>
 			<div v-for="item in items" :key="item" class="ml-2">
 			<v-btn
 				@click="changeRoute(item.path)"
-				:color="$route.path === item.path ? '#F8941E' : '#58595B'"
-				>{{ item.text }}</v-btn
-			>
+				:color="$route.path === item.path ? '#3edbf0' : '#aaaaaa'"
+				>{{ item.text }}
+      		</v-btn>
 			</div>
 
 			<v-toolbar-title class="mx-auto">Visualizing Air Pollution (PM2.5)</v-toolbar-title>
@@ -24,12 +24,12 @@
 		</v-toolbar>
 		</v-card>
 		<v-main>
-		<div class="h-100 flex-layout px-0">
-			<nuxt />
-		</div>
+			<div class="h-100 flex-layout px-0">
+				<nuxt />
+			</div>
 		</v-main>
 		<v-footer :absolute="!fixed" app>
-		<span>&copy; {{ new Date().getFullYear() }}</span>
+			<span>&copy; {{ new Date().getFullYear() }}</span>
 		</v-footer>
 	</v-app>
 </template>
