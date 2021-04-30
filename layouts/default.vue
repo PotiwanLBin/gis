@@ -10,7 +10,7 @@
           >
         </div>
 
-        <v-toolbar-title class="mx-auto">ฝ้าย</v-toolbar-title>
+        <v-toolbar-title class="mx-auto">มี่</v-toolbar-title>
 
         <!-- <template v-slot:extension v-if="$route.name == 'report'">
           <v-tabs v-model="tab" align-with-title>
