@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex">
-    <p class="mx-auto" style="font-size: 72px;color:black;">โหลดอยู่นะไอ่ห่า</p>
+    <p class="mx-auto" style="font-size: 72px;color:black;"></p>
   </div>
 </template>
 
