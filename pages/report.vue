@@ -6,6 +6,7 @@
           <v-tabs-slider color="yellow"></v-tabs-slider>
 
           <v-tab v-for="reportButton in reportButtons" :key="reportButton">
+            <v-icon>{{reportButton.icon}}</v-icon>
             <span
               style="color: #FFFFFFF"
               @click="changeRoute(reportButton.value)"
