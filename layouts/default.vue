@@ -10,11 +10,7 @@
 			>
 			</div>
 
-<<<<<<< Updated upstream
-        <v-toolbar-title class="mx-auto">Visualizing Air Pollution (PM2.5)</v-toolbar-title>
-=======
-			<v-toolbar-title class="mx-auto">Spatial And GIS</v-toolbar-title>
->>>>>>> Stashed changes
+			<v-toolbar-title class="mx-auto">Visualizing Air Pollution (PM2.5)</v-toolbar-title>
 
 			<!-- <template v-slot:extension v-if="$route.name == 'report'">
 			<v-tabs v-model="tab" align-with-title>
