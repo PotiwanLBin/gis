@@ -20,7 +20,7 @@
       <average v-else-if="value == 2" />
       <histories v-else-if="value == 3" />
       <population v-else-if="value == 4" />
-      <p v-else>เลือกสักอันไอ้สัส!</p>
+      <p v-else></p>
     </div>
   </div>
 </template>
