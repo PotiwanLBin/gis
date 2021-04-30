@@ -38,10 +38,10 @@ export default {
     return {
       value: 1,
       reportButtons: [
-        { text: "PM2.5", icon: "mdi-home", value: 1 },
-        { text: "AVERAGE", icon: "mdi-home", value: 2 },
-        { text: "HISTORIES", icon: "mdi-home", value: 3 },
-        { text: "POPULATION", icon: "mdi-home", value: 4 }
+        { text: "PM2.5", icon: "mdi-face-mask", value: 1 },
+        { text: "AVERAGE", icon: "mdi-chart-bell-curve", value: 2 },
+        { text: "HISTORIES", icon: "mdi-clock-time-three", value: 3 },
+        { text: "POPULATION", icon: "mdi-account-group", value: 4 }
       ],
       tabs: [
         { title: "PM2.5", path: "/inspire" },
