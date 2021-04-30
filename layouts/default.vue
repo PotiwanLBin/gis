@@ -1,37 +1,41 @@
 <template>
-  <v-app light id="v-app-ref">
-    <v-card>
-      <v-toolbar color="cyan" flat>
-        <div v-for="item in items" :key="item" class="ml-2">
-          <v-btn
-            @click="changeRoute(item.path)"
-            :color="$route.path === item.path ? '#F8941E' : '#58595B'"
-            >{{ item.text }}</v-btn
-          >
-        </div>
+	<v-app light id="v-app-ref">
+		<v-card>
+		<v-toolbar color="cyan" flat>
+			<div v-for="item in items" :key="item" class="ml-2">
+			<v-btn
+				@click="changeRoute(item.path)"
+				:color="$route.path === item.path ? '#F8941E' : '#58595B'"
+				>{{ item.text }}</v-btn
+			>
+			</div>
 
+<<<<<<< Updated upstream
         <v-toolbar-title class="mx-auto">Visualizing Air Pollution (PM2.5)</v-toolbar-title>
+=======
+			<v-toolbar-title class="mx-auto">Spatial And GIS</v-toolbar-title>
+>>>>>>> Stashed changes
 
-        <!-- <template v-slot:extension v-if="$route.name == 'report'">
-          <v-tabs v-model="tab" align-with-title>
-            <v-tabs-slider color="yellow"></v-tabs-slider>
+			<!-- <template v-slot:extension v-if="$route.name == 'report'">
+			<v-tabs v-model="tab" align-with-title>
+				<v-tabs-slider color="yellow"></v-tabs-slider>
 
-            <v-tab v-for="reportButton in reportButtons" :key="reportButton">
-              <span style="color: #FFFFFFF" @click="setPageReport(reportButton.value)">{{ reportButton.text }}</span>
-            </v-tab>
-          </v-tabs>
-        </template> -->
-      </v-toolbar>
-    </v-card>
-    <v-main>
-      <div class="h-100 flex-layout px-0">
-        <nuxt />
-      </div>
-    </v-main>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
-  </v-app>
+				<v-tab v-for="reportButton in reportButtons" :key="reportButton">
+				<span style="color: #FFFFFFF" @click="setPageReport(reportButton.value)">{{ reportButton.text }}</span>
+				</v-tab>
+			</v-tabs>
+			</template> -->
+		</v-toolbar>
+		</v-card>
+		<v-main>
+		<div class="h-100 flex-layout px-0">
+			<nuxt />
+		</div>
+		</v-main>
+		<v-footer :absolute="!fixed" app>
+		<span>&copy; {{ new Date().getFullYear() }}</span>
+		</v-footer>
+	</v-app>
 </template>
 
 <script>

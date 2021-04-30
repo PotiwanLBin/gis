@@ -38,7 +38,7 @@ export default {
     return {
       value: 1,
       reportButtons: [
-        { text: "PM2.5", icon: "mdi-home", value: 1 },
+        { text: "PM2.5", icon: "mdi-arrow-down-drop-circle", value: 1 },
         { text: "AVERAGE", icon: "mdi-home", value: 2 },
         { text: "HISTORIES", icon: "mdi-home", value: 3 },
         { text: "POPULATION", icon: "mdi-home", value: 4 }
