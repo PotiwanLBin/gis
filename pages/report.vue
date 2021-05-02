@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar color="cyan" flat style="margin-top: -10px;">
+    <v-toolbar color="cyan" dark flat style="margin-top: -10px;">
       <template v-slot:extension v-if="$route.name == 'report'">
         <v-tabs v-model="tab" align-with-title>
           <v-tabs-slider color="#f5f7b2"></v-tabs-slider>
@@ -16,6 +16,7 @@
         </v-tabs>
       </template>
     </v-toolbar>
+
     <div class="page">
       <pm v-if="value == 1" />
       <average v-else-if="value == 2" />

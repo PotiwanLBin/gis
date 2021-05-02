@@ -78,7 +78,7 @@ export default {
 <style scoped>
 .page {
   min-height: 835px;
-  background-color: #ffffff;
+  background-color:  #FFFFFF;
 }
 
 .btn {
