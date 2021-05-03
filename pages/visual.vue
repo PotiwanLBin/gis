@@ -22,7 +22,12 @@
             background-color="#e4fbff"
           ></v-select>
         </v-col>
-        <v-btn class="d-flex ml-5" style="margin-top: 35px;" color="#3edbf0">
+        <v-btn
+          class="d-flex ml-5"
+          style="margin-top: 35px"
+          color="#3edbf0"
+          @click="sendData()"
+        >
           OK
         </v-btn>
       </v-row>
@@ -41,6 +46,11 @@
           v-bind:clickable="true"
           @click="center = m.position"
         />
+        <gmap-polyline
+          v-bind:path.sync="path"
+          v-bind:options="{ strokeColor: '#ffffff' }"
+        >
+        </gmap-polyline>
       </GmapMap>
     </div>
   </div>
@@ -51,34 +61,104 @@ import JsonExcel from "vue-json-excel";
 
 export default {
   components: {
-    JsonExcel
+    JsonExcel,
   },
   data() {
     return {
       questions: [
-        "All the city points of all countries",
-        "All the city points of all countries",
-        "All the city points of Thailand’s neighboring countries.",
-        "MBR in Thailand.",
-        "Countries having the highest no. of city points.",
-        "All the city points which are considered as LOW INCOME"
+        { text: "All the city points of all countries", value: 1 },
+        { text: "50 closest city points to Bangkok.", value: 2 },
+        {
+          text: "All the city points of Thailand’s neighboring countries.",
+          value: 3,
+        },
+        { text: "MBR in Thailand.", value: 4 },
+        { text: "Countries having the highest no. of city points.", value: 5 },
+        {
+          text: "All the city points which are considered as LOW INCOME",
+          value: 6,
+        },
       ],
-      select: "",
-      years: [2004, 2005, 2006],
-      year: 2006,
-      markers: [
-        { position: { lat: 10.0, lng: 10.0 } },
-        { position: { lat: 11.0, lng: 11.0 } }
-      ]
+      select: 0,
+      years: [],
+      year: 2008,
+      markers: [],
+      path: [],
     };
-  }
+  },
+  methods: {
+    async sendData() {
+      console.log(this.select);
+      console.log(this.year);
+      this.markers = [];
+      this.path = [];
+      switch (this.select) {
+        case 1:
+          const data = await this.$axios.get("visualizing/findCity", {
+            params: {
+              year: this.year,
+            },
+          });
+          this.markers = data.data;
+          break;
+        case 2:
+          const data2 = await this.$axios.get("visualizing/findClosetCity", {
+            params: {
+              city: "Bangkok",
+            },
+          });
+          this.markers = data2.data;
+          break;
+        case 3:
+          const data3 = await this.$axios.get(
+            "visualizing/findThailandNeighbor",
+            {
+              params: {
+                year: this.year,
+              },
+            }
+          );
+          this.markers = data3.data;
+          break;
+        case 4:
+          const data4 = await this.$axios.get("visualizing/findMBR", {
+            params: {
+              year: this.year,
+            },
+          });
+          this.path = data4.data;
+          this.markers = data4.data;
+          break;
+        case 5:
+          const data5 = await this.$axios.get("visualizing/findHighestCity", {
+            params: {
+              year: this.year,
+            },
+          });
+          this.markers = data5.data;
+          break;
+        case 6:
+          const data6 = await this.$axios.get("visualizing/findCityLowIncome", {
+            params: {
+              year: this.year,
+            },
+          });
+          this.markers = data6.data;
+          break;
+      }
+    },
+  },
+  async mounted() {
+    const data = await this.$axios.get("report/distinctYear");
+    this.years = data.data;
+  },
 };
 </script>
 
 <style scoped>
 .page {
   min-height: 835px;
-  background-color:  #FFFFFF;
+  background-color: #ffffff;
 }
 
 .btn {

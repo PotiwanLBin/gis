@@ -6,7 +6,7 @@
           :items="years"
           v-model="year"
           filled
-          label="Countrys"
+          label="Years"
           dense
           background-color="#e4fbff"
         ></v-select>
@@ -21,22 +21,28 @@
           background-color="#e4fbff"
         ></v-select>
       </v-col>
-      <v-btn class="d-flex ml-5" style="margin-top: 35px;" color="#3edbf0">
+      <v-btn
+        class="d-flex ml-5"
+        style="margin-top: 35px"
+        color="#3edbf0"
+        @click="sendData()"
+      >
         OK
       </v-btn>
     </v-row>
     <div class="data-table-wrapper mx-auto">
       <v-data-table
         :headers="headers"
-        :items="desserts"
+        :items="data"
         :items-per-page="5"
-        class="elevation-1 "
+        class="elevation-1"
       ></v-data-table>
     </div>
-    <div class="data-table-wrapper mx-auto d-flex" style="margin-top:25px;">
+    <div class="data-table-wrapper mx-auto d-flex" style="margin-top: 25px">
       <jsonExcel
-        class=" ml-auto"
+        class="ml-auto"
         worksheet="My Worksheet"
+        :data="data"
         name="filename.xls"
         escapeCsv="false"
       >
@@ -53,114 +59,68 @@
 import JsonExcel from "vue-json-excel";
 export default {
   components: {
-    JsonExcel
+    JsonExcel,
   },
   data() {
     return {
-      years: [2004, 2005, 2006],
-      year: 2006,
-      colors: ["red", "black", "white"],
+      years: [],
+      year: 2008,
+      colors: [],
       color: "red",
       headers: [
         {
-          text: "Dessert (100g serving)",
+          text: "Country",
           align: "start",
-          sortable: false,
-          value: "name"
+          value: "country",
         },
         {
-          text: "Calories",
-          value: "calories"
+          text: "Level",
+          value: "level",
         },
-        { text: "Fat (g)", value: "fat" },
-        { text: "Carbs (g)", value: "carbs" },
-        { text: "Protein (g)", value: "protein" },
-        { text: "Iron (%)", value: "iron" }
+        {
+          text: "Population",
+          value: "population",
+        },
+        {
+          text: "Year",
+          value: "year",
+        },
       ],
-      desserts: [
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: "1%"
-        },
-        {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: "1%"
-        },
-        {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: "7%"
-        },
-        {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: "8%"
-        },
-        {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: "16%"
-        },
-        {
-          name: "Jelly bean",
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: "0%"
-        },
-        {
-          name: "Lollipop",
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: "2%"
-        },
-        {
-          name: "Honeycomb",
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: "45%"
-        },
-        {
-          name: "Donut",
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: "22%"
-        },
-        {
-          name: "KitKat",
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: "6%"
-        }
-      ]
+      data: [],
     };
-  }
+  },
+  methods: {
+    async sendData() {
+      this.data = [];
+      console.log("test");
+      console.log(this.year);
+      console.log(this.color);
+      const data = await this.$axios.get("report/findTotalPopulation", {
+        params: {
+          year: this.year,
+          color: this.color,
+        },
+      });
+      console.log(data.data);
+      if (data.status === 200) {
+        data.data.forEach((v) => {
+          const pmData = {};
+          (pmData.country = v.country),
+            (pmData.year = v.year),
+            (pmData.level = v.level),
+            (pmData.population = v.population);
+          this.data.push(pmData);
+        });
+      }
+      console.log(this.data);
+    },
+  },
+  async mounted() {
+    const data = await this.$axios.get("report/distinctYear");
+    this.years = data.data;
+    const data2 = await this.$axios.get("report/distinctColor");
+    this.colors = data2.data;
+  },
 };
 </script>
 
