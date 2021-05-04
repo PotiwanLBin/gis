@@ -15,7 +15,7 @@
         OK
       </v-btn>
     </v-row> -->
-    <div class="data-table-wrapper mx-auto">
+    <div class="data-table-wrapper mx-auto py-12">
       <v-data-table
         :headers="headers"
         :items="countries"
